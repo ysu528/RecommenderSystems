@@ -27,14 +27,17 @@
 
 在共现矩阵中，每个用户对应的行向量其实就可以当作一个用户的 Embedding 向量。
 利用余弦相似度了，它衡量了用户向量 i 和用户向量 j 之间的向量夹角大小。夹角越小，余弦相似度越大，两个用户越相似，定义：
+<br/>
 ![image](https://user-images.githubusercontent.com/46898984/155735203-284a5895-fc36-42e1-82f1-38c28a790760.png)
+<br/>
 改进：现在大佬们又使用如Word2vec，Item2vec等Embedding类的算法，将物品嵌入固定的向量空间中，再使用LSH算法(局部敏感哈希算法)取最近邻物品，即根据相似度排序取最近邻的物品。
 
 ## 三、用户评分的预测
 
 在获得 Top n 个相似用户之后，利用 Top n 用户生成最终的用户 u 对物品 p 的评分的过程，可以基于假设：目标用户和top n用户喜好相似。最直接计算是利用用户相似度，和相似用户评价的加权平均值：
+<br/>
 ![image](https://user-images.githubusercontent.com/46898984/155735257-5c4a86d9-453a-43b6-b623-aecd54b86648.png)
-<img src="https://user-images.githubusercontent.com/46898984/155735257-5c4a86d9-453a-43b6-b623-aecd54b86648.png" width="200" height="200"/>
+<br/>
 
 其中Wu,s是用户u和用户s之间的相似度，而Rs,p是用户s对商品p的评分。就这样得到Ru,p即目标用户u对物品p的预测评分（其他商品也是一样道理），根据这个分数对商品排序，从而得到推荐列表。
 
